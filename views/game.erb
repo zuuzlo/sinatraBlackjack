@@ -1,0 +1,26 @@
+<div><h1>Blackjack</h1>
+
+<h3>Welcome <%= session[:player_name] %>.</h3></div>
+
+<p>Dealer Cards:</p>
+<% if session[:dealer_display?] %>
+  <div styles="float:left"><img src="/images/cards2/<%= session[:dealer_cards_image][0] %>"/><img style="margin-right:10px;" src="/images/cards2/b2pr.png"/></div><br>
+<%else%>
+  <div styles="float:left">
+  <% session[:dealer_cards_image].each do | image | %>
+    <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+  <% end %>
+  </div><br>
+<% end %>
+  
+
+<p><%= session[:player_name] %>'s Cards:</p>
+<div styles="float:left">
+  <% session[:player_cards_image].each do | image | %>
+    <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+  <% end %>
+</div><br>
+
+<form  action='/toggle' method='post'>
+  <input type='submit' class='button' value='Togel Dealer Display' name='toggle' />
+</form>
