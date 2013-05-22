@@ -39,7 +39,7 @@
   <div class="<%= session[:status_class] %>"><%= session[:status_mess]%></div>
   <% if session[:play_status] == "b" %>
     <form  action='/bet' method='post'>
-      <input class="input-mini" type='text' name='hand_bet' size="5"/>
+      <input class="input-mini" type='text' name='hand_bet' size="5"/><br>
       <input type='submit' class='btn' value='Place Bet'/>
     </form>
   <% elsif session[:play_status] == "a" %>
