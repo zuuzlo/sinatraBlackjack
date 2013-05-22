@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'pry'
+#require 'pry'
 require 'sinatra'
 
 set :sessions, true
