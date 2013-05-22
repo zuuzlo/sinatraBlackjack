@@ -143,7 +143,7 @@ end
 post '/bet' do
   session[:hand_bet] = params[:hand_bet].to_i
   if session[:hand_bet] <= 0 || session[:hand_bet].to_i > session[:bank_roll]
-    session[:status_mess] = "Enter a Valid Bet Amount Lessthan Your Bankroll!"
+    session[:status_mess] = @play_status_message[:error] #"Enter a Valid Bet Amount Lessthan Your Bankroll!"
     session[:status_class] = "alert alert-error"
   else
     session[:status_mess] = "Your bet: #{session[:hand_bet]}"
