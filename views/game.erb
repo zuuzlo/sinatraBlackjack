@@ -1,26 +1,50 @@
 <div><h1>Blackjack</h1>
 
-<h3>Welcome <%= session[:player_name] %>.</h3></div>
+<p>Welcome <%= session[:player_name] %>.</p></div>
 
-<p>Dealer Cards:</p>
-<% if session[:dealer_display?] %>
-  <div styles="float:left"><img src="/images/cards2/<%= session[:dealer_cards_image][0] %>"/><img style="margin-right:10px;" src="/images/cards2/b2pr.png"/></div><br>
-<%else%>
-  <div styles="float:left">
-  <% session[:dealer_cards_image].each do | image | %>
-    <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+<div> <div> <!--Hand status div -->
+
+<div class="well well-large">
+  <p>Dealer Cards:</p>
+  <% #binding.pry %>
+  <% if session[:dealer_display?] %>
+    <div styles="float:left"><img src="/images/cards2/<%= session[:dealer_cards_image][0] %>"/><img style="margin-right:10px;" src="/images/cards2/b2pr.png"/></div><br>
+  <%else%>
+    <div styles="float:left">
+    <% session[:dealer_cards_image].each do | image | %>
+      <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+    <% end %>
+    </div><br>
   <% end %>
-  </div><br>
-<% end %>
+</div>
   
+<div class="well well-large">
+  <p><%= session[:player_name] %>'s Cards:</p>
+  <div styles="float:left">
+    <% session[:player_cards_image].each do | image | %>
+      <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+    <% end %>
+  </div><br>
+  <div>Bankroll: <%=session[:bank_roll]%></div>
+</div>
 
-<p><%= session[:player_name] %>'s Cards:</p>
-<div styles="float:left">
-  <% session[:player_cards_image].each do | image | %>
-    <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
+<div>
+  <div class="<%= session[:status_class] %>"><%= session[:status_mess]%></div>
+  <% if session[:play_status] == "b" %>
+    <form  action='/bet' method='post'>
+      <input class="input-mini" type='text' name='hand_bet' size="5"/>
+      <input type='submit' class='btn' value='Place Bet'/>
+    </form>
+  <% elsif session[:play_status] == "a" %>
+    <% #TODO action form hit stay ...%>
+    <form  action='/hit' method='post'>
+      <input type='submit' class='btn' value='Hit' name='hit'/>
+      <input type='submit' class='btn' value='Stay' name='stay'/>
+    </form>
+  <% else %>
+    <% #TODO play again form %>
+    <form  action='/play_again' method='post'>
+      <input type='submit' class='btn' value='Play Again' name='play_again'/>
+    </form>
   <% end %>
-</div><br>
-
-<form  action='/toggle' method='post'>
-  <input type='submit' class='button' value='Togel Dealer Display' name='toggle' />
-</form>
+</div>
