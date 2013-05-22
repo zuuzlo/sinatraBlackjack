@@ -31,12 +31,16 @@ def deal
   session[:dealer_display?] = false
   session[:play_status] = "b" #b-bet, a-action, pa-play again
   session[:player_total] = 0
+  session[:dealer_total] = 0
   session[:status_mess] = "Enter Hand Bet Amount."
   session[:status_class] = "alert alert-info"
   session[:player_cards] << session[:deck].pop
   session[:dealer_cards] << session[:deck].pop
   session[:player_cards] << session[:deck].pop
   session[:dealer_cards] << session[:deck].pop
+  session[:dealer_total] = hand_value(session[:dealer_cards])
+  session[:player_total] = hand_value(session[:player_cards])
+
 end
  def to_image(cards)
     card_out = []

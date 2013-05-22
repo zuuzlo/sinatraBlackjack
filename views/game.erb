@@ -16,6 +16,9 @@
     <% end %>
     </div><br>
   <% end %>
+  <% if session[:play_status] == "pa" %>
+    <div>Dealer hand total: <%= session[:dealer_total] %></div>
+  <% end %>
 </div>
   
 <div class="well well-large">
@@ -25,7 +28,11 @@
       <img style="margin-right:5px" src="/images/cards2/<%= image %>"/>
     <% end %>
   </div><br>
-  <div>Bankroll: <%=session[:bank_roll]%></div>
+  <div>Bankroll: <%=session[:bank_roll]%>
+  <% if session[:play_status] == "pa" %>
+    Player total: <%=session[:player_total] %>
+  <% end %>  
+ </div>
 </div>
 
 <div>
